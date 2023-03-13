@@ -1,5 +1,5 @@
 class Preset():
-    AMOUNT = 10
+    AMOUNT = 100
     MIN_VALUE = 0
     MAX_VALUE = 100
     STEPS = 1

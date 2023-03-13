@@ -6,26 +6,26 @@ from preset_data import Preset
 from typing import List
 
 def calculate(query:List[int]):
+    dataset:List[int] = query
     steps = []
     
-    
-    n = len(query)
+    n = len(dataset)
 
                 
     for i in range(0,n-1):  
+        steps.append(list(dataset))
         for j in range(n-1):  
-            steps.append(query)
-            if(query[j]>query[j+1]):   
-                query[j],query[j+1] = query[j+1], query[j]  
-    print(steps)
-    return steps
+            if(dataset[j]>dataset[j+1]):   
+                dataset[j],dataset[j+1] = dataset[j+1], dataset[j]  
+    return steps, dataset
 
 
 
 def main():
+    
     data = QueryInt(Preset.AMOUNT,Preset.MIN_VALUE,Preset.MAX_VALUE,Preset.STEPS).calculate()    
-    steps = calculate(data)
-    # print(steps)
+    steps,dataset = calculate(data)
+    print(dataset)
     app = App()
     app.objs.append(Frame(steps))
     app.start_monitor()

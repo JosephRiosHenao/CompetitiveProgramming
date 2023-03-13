@@ -22,7 +22,6 @@ class App(object):
     def update(self) -> None:
         for obj in self.objs:
             obj.update()
-            sleep(1)
     
     def draw(self) -> None:
         pyxel.cls(0)

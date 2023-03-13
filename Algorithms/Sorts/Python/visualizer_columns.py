@@ -8,18 +8,25 @@ class Frame():
     def __init__(self, frames:List[List[int]]) -> None:
         self.frames = frames
         self.position = [0,0]
-        self.step = 0
-        self.columns:List[Column] = [] 
+        self.step = 1
+        self.columns:List[Column] = self.start_frames() 
         
     def calculate_position(self):
         self.position[0] += Preset.PADDING
         return self.position[0]
+    
+    def start_frames(self) -> List[Column]:
+        self.position[0] = 0
+        columns:List[Column] = []
+        for column_value in self.frames[0]:
+            columns.append(Column(self.calculate_position(),self.position[1], Preset.PADDING, column_value, 11))
+        return columns
 
     def recreating_frames(self):
         self.position[0] = 0
         columns:List[Column] = []
-        for column_value in self.frames[self.step]:
-            columns.append(Column(self.calculate_position(),self.position[1], Preset.PADDING, column_value, 11))
+        for idx_column, column_value in enumerate(self.frames[self.step]):
+            columns.append(Column(self.calculate_position(),self.position[1], Preset.PADDING, column_value, 11 if self.position[0] != self.columns[idx_column].x else 8))
         self.columns = columns
     
     def update(self):
