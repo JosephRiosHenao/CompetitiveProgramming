@@ -1,12 +1,16 @@
 import pyxel
-
-WIDTH = 100
-HEIGHT = 100
+from preset_data import Preset
+from time import sleep
 
 class App(object):
+    
     def __init__(self) -> None:
-        pyxel.init(WIDTH, HEIGHT)
+        self.objs = []
+        
+    def start_monitor(self) -> None:
+        pyxel.init(Preset.WIDTH, Preset.HEIGHT)
         pyxel.run(self.update, self.draw)
+        
 
     __instance = None        
     def __new__(cls):
@@ -16,7 +20,11 @@ class App(object):
         return App.__instance 
         
     def update(self) -> None:
-        pass    
+        for obj in self.objs:
+            obj.update()
+            sleep(1)
     
     def draw(self) -> None:
-        pass
+        pyxel.cls(0)
+        for obj in self.objs:
+            obj.draw()
