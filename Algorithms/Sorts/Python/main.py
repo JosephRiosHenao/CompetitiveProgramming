@@ -1,6 +1,11 @@
 import pyxel
-from preset_data import Preset
-from time import sleep
+from Engine.preset_data import Preset
+from Engine.query import QueryInt
+from Engine.visualizer_columns import VisualizarEngine
+from main import App
+
+from BubbleSort import BubbleSort
+
 
 class App(object):
     
@@ -8,7 +13,7 @@ class App(object):
         self.objs = []
         
     def start_monitor(self) -> None:
-        pyxel.init(Preset.WIDTH, Preset.HEIGHT)
+        pyxel.init(Preset.WIDTH, Preset.HEIGHT, fps=Preset.SPEED)
         pyxel.run(self.update, self.draw)
         
 
@@ -27,3 +32,12 @@ class App(object):
         pyxel.cls(0)
         for obj in self.objs:
             obj.draw()
+            
+def main():
+    data = QueryInt(Preset.AMOUNT,Preset.MIN_VALUE,Preset.MAX_VALUE,Preset.STEPS).calculate()    
+    algorithm = BubbleSort() 
+    app = App()
+    app.objs.append(VisualizarEngine(data, algorithm))
+    app.start_monitor()
+if __name__ == "__main__":
+    main()
