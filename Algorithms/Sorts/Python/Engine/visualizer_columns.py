@@ -1,6 +1,6 @@
 from typing import List
-from column import Column
-from preset_data import Preset
+from .column import Column
+from .preset_data import Preset
             
 class VisualizarEngine():
     def __init__(self, dataset:List[int], algorithm):

@@ -2,7 +2,6 @@ import pyxel
 from Engine.preset_data import Preset
 from Engine.query import QueryInt
 from Engine.visualizer_columns import VisualizarEngine
-from main import App
 
 from BubbleSort import BubbleSort
 
