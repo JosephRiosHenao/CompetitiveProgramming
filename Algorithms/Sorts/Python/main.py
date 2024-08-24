@@ -3,7 +3,7 @@ from Engine.preset_data import Preset
 from Engine.query import QueryInt
 from Engine.visualizer_columns import VisualizarEngine
 
-from BubbleSort import BubbleSort
+from BubbleSort import BubbleSort, SelectionSort, MergeSort
 
 
 class App(object):
@@ -34,7 +34,7 @@ class App(object):
             
 def main():
     data = QueryInt(Preset.AMOUNT,Preset.MIN_VALUE,Preset.MAX_VALUE,Preset.STEPS).calculate()    
-    algorithm = BubbleSort() 
+    algorithm = MergeSort() 
     app = App()
     app.objs.append(VisualizarEngine(data, algorithm))
     app.start_monitor()

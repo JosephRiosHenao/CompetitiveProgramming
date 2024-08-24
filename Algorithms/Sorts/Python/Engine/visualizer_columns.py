@@ -10,8 +10,10 @@ class VisualizarEngine():
         self.dataset = dataset
         self.n = len(dataset)
         self.algorithm = algorithm
+        self.steps = 0
     def reposition(self):
-        self.dataset = self.algorithm.calculate(self.dataset)
+        self.dataset = self.algorithm.calculate(self.dataset, self.steps)
+        self.steps += 1
         self.calculate_columns()
     def calculate_position(self):
         self.position[0] += Preset.PADDING
